@@ -1,0 +1,88 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sms Microservice Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://sms.loc/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/sms": {
+            "post": {
+                "tags": [
+                    "Sms"
+                ],
+                "summary": "send sms api",
+                "operationId": "90086682ef5ac25f04c18bed5bfb9471",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SmsSW"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Type not found in SmsType"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SmsSW": {
+                "title": "Send SMS by type with data",
+                "properties": {
+                    "phone": {
+                        "title": "phone",
+                        "type": "integer",
+                        "example": 99890444204
+                    },
+                    "type": {
+                        "title": "type",
+                        "description": "Types required 2 params: {\n     *      code_and_price_for_send_monay,\n     *      code_and_price_for_send_monay_with_title_Agrozamin,\n     *      cabinet_login_password_web,\n     *      cabinet_login_password_telegram,\n     *      cabinet_login_password_with_title_AgroZamin\n     *     },\n     *     Types required 1 param: {\n     *      register_code,\n     *      new_password,\n     *      restore_password,\n     *      success_added_card,\n     *      success_added_card_Agrozamin,\n     *      confirm_code_to_add_card,\n     *      confirm_code_to_add_card_with_title_Agrozamin\n     *      }",
+                        "type": "string",
+                        "example": "code_and_price_for_send_monay"
+                    },
+                    "data": {
+                        "title": "data",
+                        "description": "Two params: {login: user, password: 123456},{card: 86003349000000,price: 1200000.00}, One param: {code: 123215}, {card:86003349000000}",
+                        "example": {
+                            "card": 86003349000000,
+                            "price": 1200000
+                        }
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
